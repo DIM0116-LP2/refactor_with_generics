@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ProdutoRepository repository = new ProdutoRepository();
+        Repository<Produto> repository = new Repository<>();
 
         repository.adicionar(
             new Produto("Notebook", "Eletrônicos", 3500)
