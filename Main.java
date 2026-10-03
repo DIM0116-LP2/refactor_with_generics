@@ -33,7 +33,7 @@ public class Main {
         System.out.println("=== ELETRÔNICOS ===");
 
         List<Produto> eletronicos =
-            service.buscarPorCategoria(produtos, "Eletrônicos");
+            service.filter(produtos, p -> p.getCategoria() == "Eletrônicos" );
 
         for (Produto produto : eletronicos) {
             System.out.println(produto);
@@ -42,7 +42,7 @@ public class Main {
         System.out.println("\n=== ATÉ R$ 800 ===");
 
         List<Produto> baratos =
-            service.buscarAbaixoDoPreco(produtos, 800);
+            service.filter(produtos, p -> p.getPreco() <= 800 );
 
         for (Produto produto : baratos) {
             System.out.println(produto);
@@ -57,12 +57,12 @@ public class Main {
             System.out.println(nome);
         }
 
-        System.out.println("\n=== ORDENADOS POR PREÇO ===");
+        // System.out.println("\n=== ORDENADOS POR PREÇO ===");
 
-        service.ordenarPorPreco(produtos);
+        // service.ordenarPorPreco(produtos);
 
-        for (Produto produto : produtos) {
-            System.out.println(produto);
-        }
+        // for (Produto produto : produtos) {
+        //     System.out.println(produto);
+        // }
     }
 }

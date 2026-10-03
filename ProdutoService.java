@@ -2,39 +2,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class ProdutoService {
 
-    public List<Produto> buscarPorCategoria(
-            List<Produto> produtos,
-            String categoria) {
+    public List<Produto> filter(List<Produto> produtos,
+                                Predicate<Produto> PisTrue){
+        List<Produto> ret = new ArrayList<>();
 
-        List<Produto> resultado = new ArrayList<>();
-
-        for (Produto produto : produtos) {
-
-            if (produto.getCategoria().equalsIgnoreCase(categoria)) {
-                resultado.add(produto);
+        for (Produto prod : produtos){
+            if (PisTrue.test(prod)){
+                ret.add(prod);
             }
         }
 
-        return resultado;
-    }
-
-    public List<Produto> buscarAbaixoDoPreco(
-            List<Produto> produtos,
-            double precoMaximo) {
-
-        List<Produto> resultado = new ArrayList<>();
-
-        for (Produto produto : produtos) {
-
-            if (produto.getPreco() <= precoMaximo) {
-                resultado.add(produto);
-            }
-        }
-
-        return resultado;
+        return ret;
     }
 
     public List<String> obterNomes(
