@@ -32,37 +32,22 @@ public class Main {
 
         System.out.println("=== ELETRÔNICOS ===");
 
-        List<Produto> eletronicos =
-            service.filter(produtos, p -> p.getCategoria() == "Eletrônicos" );
-
-        for (Produto produto : eletronicos) {
-            System.out.println(produto);
-        }
+        List<Produto> eletronicos = service.filter(produtos, p -> p.getCategoria().equals("Eletrônicos"));
+        eletronicos.forEach(System.out::println);
 
         System.out.println("\n=== ATÉ R$ 800 ===");
 
-        List<Produto> baratos =
-            service.filter(produtos, p -> p.getPreco() <= 800 );
-
-        for (Produto produto : baratos) {
-            System.out.println(produto);
-        }
+        List<Produto> baratos = service.filter(produtos, p -> p.getPreco() <= 800);
+        baratos.forEach(System.out::println);
 
         System.out.println("\n=== NOMES ===");
 
-        List<String> nomes =
-            service.obterNomes(produtos);
+        List<String> nomes = service.obterNomes(produtos);
+        nomes.forEach(System.out::println);
 
-        for (String nome : nomes) {
-            System.out.println(nome);
-        }
+        System.out.println("\n=== ORDENADOS POR PREÇO ===");
 
-        // System.out.println("\n=== ORDENADOS POR PREÇO ===");
-
-        // service.ordenarPorPreco(produtos);
-
-        // for (Produto produto : produtos) {
-        //     System.out.println(produto);
-        // }
+        List<Produto> ordenados = service.ordenarPorPreco(produtos);
+        ordenados.forEach(System.out::println);
     }
 }
