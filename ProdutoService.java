@@ -6,46 +6,21 @@ import java.util.function.Predicate;
 
 public class ProdutoService {
 
-    public List<Produto> filter(List<Produto> produtos,
-                                Predicate<Produto> PisTrue){
-        List<Produto> ret = new ArrayList<>();
-
-        for (Produto prod : produtos){
-            if (PisTrue.test(prod)){
-                ret.add(prod);
-            }
-        }
-
-        return ret;
+    public List<Produto> filter(List<Produto> produtos, Predicate<Produto> PisTrue){
+        return produtos.stream()
+                .filter(PisTrue)
+                .toList();
     }
 
-    public List<String> obterNomes(
-            List<Produto> produtos) {
-
-        List<String> nomes = new ArrayList<>();
-
-        for (Produto produto : produtos) {
-            nomes.add(produto.getNome());
-        }
-
-        return nomes;
+    public List<String> obterNomes(List<Produto> produtos) {
+        return produtos.stream()
+                .map(Produto::getNome) 
+                .toList();
     }
 
-    public void ordenarPorPreco(List<Produto> produtos) {
-
-        Collections.sort(
-            produtos,
-            new Comparator<Produto>() {
-
-                @Override
-                public int compare(Produto p1, Produto p2) {
-
-                    return Double.compare(
-                        p1.getPreco(),
-                        p2.getPreco()
-                    );
-                }
-            }
-        );
+    public List<Produto> ordenarPorPreco(List<Produto> produtos) {
+        return produtos.stream()
+                .sorted((p1, p2) -> Double.compare(p1.getPreco(), p2.getPreco()))
+                .toList();
     }
 }
